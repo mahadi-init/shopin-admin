@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "public/admin-bg.jpg"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
