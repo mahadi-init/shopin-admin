@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { setCookie } from "cookies-next";
+import './login.css'
 
 const adminUsername = import.meta.env.VITE_ADMIN_USERNAME as string;
 const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD as string;
@@ -26,20 +27,13 @@ export default function Login() {
   };
 
   return (
-    <Form
-      style={{
-        width: "100vh",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "8px",
-      }}
+    <div className="align-items-center d-flex flex-column justify-content-center form-login">
+      <Form
+      className="form-login-2"
       onSubmit={handleFormSubmit}
     >
       <h2 style={{ marginBottom: "30px" }}>Admin Login</h2>
-      <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+      <Form.Group as={Row} className="mb-3 form-group-login" controlId="formPlaintextPassword">
         <Form.Label column sm="2">
           Username
         </Form.Label>
@@ -52,7 +46,7 @@ export default function Login() {
           />
         </Col>
       </Form.Group>
-      <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+      <Form.Group as={Row} className="mb-3 form-group-login" controlId="formPlaintextPassword">
         <Form.Label column sm="2">
           Password
         </Form.Label>
@@ -69,5 +63,6 @@ export default function Login() {
         Submit
       </Button>
     </Form>
+    </div>
   );
 }
