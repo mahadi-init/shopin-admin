@@ -1,6 +1,14 @@
 import { Button, Form } from "react-bootstrap";
 import "../add-product/addProduct.css";
+import Datepicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { useState } from "react";
 const addProduct = () => {
+
+  const [startDate, setStartDate] = useState(new Date());
+
+  const [endDate, setEndDate] = useState(new Date());
+
   return (
     <div className="body-bg">
       <div className="py-3">
@@ -76,10 +84,22 @@ const addProduct = () => {
                     </div>
 
                     <div className="col-md-6">
-                      <Form.Group className="mb-3" controlId="">
+                      {/* <Form.Group className="mb-3" controlId="">
                         <Form.Label>Start And End Date</Form.Label>
                         <Form.Control type="text" placeholder="product title" />
-                      </Form.Group>
+                      </Form.Group> */}
+
+                      <div className="d-flex gap-3 flex-wrap">
+                        <div>
+                          <p>Start date</p>
+                          <Datepicker selected={startDate} onChange={(date: any) => setStartDate(date)}></Datepicker>
+                        </div>
+
+                        <div>
+                          <p>End date</p>
+                          <label><Datepicker selected={endDate} onChange={(date: any) => setEndDate(date)}></Datepicker></label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
