@@ -2,12 +2,29 @@ import { Button, Form } from "react-bootstrap";
 import "../add-product/addProduct.css";
 import Datepicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useState } from "react";
+import { useRef, useState } from "react";
 const addProduct = () => {
 
   const [startDate, setStartDate] = useState(new Date());
 
   const [endDate, setEndDate] = useState(new Date());
+
+  const inputRef = useRef(null);
+  const [image, setImage] = useState("");
+
+  const handleImageClick = () => {
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
+  };
+
+  const handleImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files;
+      console.log(file);
+      setImage(URL.createObjectURL(event.target.files[0]));
+    }
+  }
 
   return (
     <div className="body-bg">
@@ -196,12 +213,26 @@ const addProduct = () => {
                     </Form.Group>
                     </div>
                     <div className="col-md-6">
-                    <Form.Group className="mb-3" controlId="">
+                    {/* <Form.Group className="mb-3" controlId="">
                       <Form.Label>
                         Upload your image here <span className="text-danger">*</span>
                       </Form.Label>
                       <Form.Control type="text" placeholder="product unit" />
-                    </Form.Group>
+                    </Form.Group> */}
+
+                    <div>
+                      <p>Upload your image here</p>
+                      <div className="d-flex flex-wrap">
+                        <input type="file" ref={inputRef} onChange={handleImageChange}/>
+                        
+                        {image ? (
+                          <img className="w-25" src={image} alt="" />
+                        ) : (
+                          <img src="" alt="" />
+                        )}
+
+                      </div>
+                    </div>
                     </div>
                   </div>
 
@@ -215,7 +246,13 @@ const addProduct = () => {
                        Products Tags <span className="text-danger">*</span>
                       </Form.Label>
                       <Form.Control type="text" placeholder="product unit" />
-                    </Form.Group>     
+                    </Form.Group>
+                    <Form.Group className="p-4 my-2 form-bg" controlId="">
+                      <Form.Label>
+                       Product category <span className="text-danger">*</span>
+                      </Form.Label>
+                      <Form.Control type="text" placeholder="ex: electronics, headphone" />
+                    </Form.Group>         
               </div>
             </div>
           </div>
